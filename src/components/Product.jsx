@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
 	Card,
 	CardBody,
@@ -12,16 +12,15 @@ import {
 	Button,
 } from "reactstrap";
 import { addItem } from "../store/cartSlice";
+import { getProducts } from "../store/productSlice";
 
 const Product = () => {
 	const dispatch = useDispatch();
 
-	const [products, setProducts] = useState([]);
+	const { data: products } = useSelector((store) => store.products);
 
 	useEffect(() => {
-		fetch("https://fakestoreapi.com/products")
-			.then((data) => data.json())
-			.then((result) => setProducts(result));
+		dispatch(getProducts());
 	}, []);
 
 	const handleAddItem = (product) => {
