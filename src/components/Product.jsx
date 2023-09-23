@@ -17,7 +17,7 @@ import { getProducts } from "../store/productSlice";
 const Product = () => {
 	const dispatch = useDispatch();
 
-	const { data: products } = useSelector((store) => store.products);
+	const { data: products, status } = useSelector((store) => store.products);
 
 	useEffect(() => {
 		dispatch(getProducts());
@@ -26,6 +26,8 @@ const Product = () => {
 	const handleAddItem = (product) => {
 		dispatch(addItem(product));
 	};
+
+	if (status === "error") return <h1>Something went wrong</h1>;
 
 	const cards = products.map((product) => {
 		return (
@@ -55,7 +57,7 @@ const Product = () => {
 	return (
 		<div>
 			<h1>Products Dashboard</h1>
-			<Row>{cards}</Row>
+			{status === "loading" ? <h1>Loading....</h1> : <Row>{cards}</Row>}
 		</div>
 	);
 };
