@@ -13,8 +13,8 @@ const App = () => {
 	const router = createBrowserRouter(
 		createRoutesFromElements(
 			<Route path="/" element={<RootLayout />}>
-				<Route index element={<Dashboard />} />
-				<Route path="/product" element={<Product />} />
+				<Route index element={<Product />} />
+				<Route path="/dashboard " element={<Dashboard />} />
 				<Route path="/cart" element={<Cart />} />
 			</Route>
 		)

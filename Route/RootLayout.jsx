@@ -1,12 +1,13 @@
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
-
+import { Provider } from "react-redux";
+import store from "../src/store/store";
 const RootLayout = () => {
 	return (
-		<div>
+		<Provider store={store}>
 			<Header />
 			<Outlet />
-		</div>
+		</Provider>
 	);
 };
 
